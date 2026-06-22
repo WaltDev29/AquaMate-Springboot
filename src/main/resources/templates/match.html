@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate : Match</title>
+	<link rel="stylesheet" href="/css/match.css">
+	<link rel="stylesheet" href="/css/helpBot.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/match.js"></script>
+	<script src="/js/helpBot.js"></script>
+</head>
+
+<body>
+	<header>
+		<a href="/userHome">
+			<img src="/images/logo.png" width="200px">
+		</a>
+		<div id="head">
+			<a href="/match">
+				<button id="btn_h_match"><img src="/images/heart.png"></button>
+				<h1>Match</h1>
+			</a>
+		</div>
+		<nav>
+			<div id="h_dic">
+				<a href="/dictionary">
+					<button id="btn_dic"><img src="/images/book.png"></button>
+					<h3>Dictionary</h3>
+				</a>
+			</div>
+			<div id="h_match">
+				<a href="/match">
+					<button id="btn_n_match"><img src="/images/heart.png"></button>
+					<h3>Match</h3>
+				</a>
+			</div>
+			<div id="h_about">
+				<a href="/about">
+					<button id="btn_about"><img src="/images/bookmark.png"></button>
+					<h3>About</h3>
+				</a>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div id="gradient_top">
+		</div>
+		<section>
+			<div id="main_container">
+				<div id="tank">
+					<div id="match">
+						<article class="match_card" data-changed="false">
+							<div id="art_head">
+								<h3>금붕어</h3>
+								<button class="starBox"></button>
+							</div>
+							<img src="/images/fish_gold.jpg">
+						</article>
+						<img src="/images/match_heart.png" id="match_heart">
+						<article class="match_card" data-changed="false">
+							<div id="art_head">
+								<h3>베타</h3>
+								<button class="starBox"></button>
+							</div>
+							<img src="/images/fish_betta.png">
+						</article>
+					</div>
+					<div id="result">궁합이 좋습니다!</div>
+				</div>
+				<aside>
+					<div id="search">
+						<div id="grp_search">
+							<input type="text" id="tb_search">
+							<button id="btn_search">Search</button>
+						</div>
+						<div id="grp_sort">
+							<select name="sort" id="select_search">
+								<option value="ocean">바다</option>
+								<option value="water">민물</option>
+								<option value="temp">수온</option>
+								<option value="size">크기</option>
+								<option value="persnal">성격</option>
+							</select>
+							<button id="btn_filter">Filter<img src="/images/filter.png"></button>
+						</div>
+					</div>
+					<div id="item_container"></div>
+				</aside>
+			</div>
+		</section>
+		<div id="gradient_bottom">
+		</div>
+		<div id="helpBtn"></div>
+		<div id="helpModal">
+			<div id="helpHeader"> 
+				Help Center
+				<span class="cancelBtn">×</span>
+			</div>
+			<div id="apiKey">
+				<input type="text" id="apiKeyTb" placeholder="API Key" autocomplete="off">
+				<input type="button" id="apiKeySendBtn">
+			</div>
+			<div id="helpScreen"></div>
+			<div id="helpFooter">
+				<input type="text" class="tb">
+				<input type="button" class="sendBtn">
+			</div>
+		</div>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="/images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

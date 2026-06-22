@@ -1,0 +1,195 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+	background-repeat: no-repeat;
+}
+
+/* main */
+main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+main img {
+	cursor: pointer;
+	position: relative;
+	top: 40px;
+	transition: all 1s ease;
+}
+
+/* 로그인 */
+#div_sign {
+	margin-top: -40px;
+	padding: 0;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 1s ease;
+}
+
+/* 텍스트 박스 */
+#div_sign>div.tb {
+	margin: 12px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* 라벨 */
+#div_sign label {
+	display: inline-flex;
+	justify-content: center;
+	width: 40px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+}
+
+/* 텍스트 박스 */
+.tb>input {
+	margin-left: 10px;
+	border: 2px solid rgb(192, 192, 192);
+	border-radius: 13px;
+	background-color: white;
+	width: 300px;
+	height: 30px;
+	padding-left: 10px;
+	font-size: 1.1rem;
+}
+
+.tb>input:focus {
+	outline: none;
+	border: 2px solid rgb(0, 4, 255);
+}
+
+/* 로그인 버튼  */
+#div_btn input {
+	float: right;
+	margin-left: 20px;
+	width: 90px;
+	height: 40px;
+	border: 2px solid white;
+	border-radius: 12px;
+	background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 52%, rgb(1, 73, 255) 100%);
+	color: white;
+	font-size: 1.2rem;
+	font-weight: bold;
+	cursor: pointer;
+	text-align: center;
+}
+
+/* footer */
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap;
+	padding: 0 20px;
+	color: white;
+	border-top: 1px solid white;
+}
+
+#contact,
+#source {
+	display: flex;
+	align-items: center;
+	margin: 20px auto;
+}
+
+footer>div>span:first-child {
+	font-size: 1.2rem;
+}
+
+footer>div span.label {
+	margin: 0 20px;
+	transition: all 0.5s;
+}
+
+footer>div span.label:hover {
+	transform: scale(1.05);
+}
+
+footer span img {
+	width: 25px;
+	margin-right: 10px;
+}
+
+.label {
+	display: inline-flex;
+	align-items: center;
+	background-color: rgba(255, 249, 249, 0.4);
+	border-radius: 8px;
+	padding: 5px;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+footer span img {
+	width: 25px;
+	margin-right: 10px;
+}
+
+/* 반응형 디자인*/
+@media (max-width: 730px) {
+	footer {
+		flex-direction: column;
+	}
+
+	#contact,
+	#source {
+		margin: 5px auto;
+	}
+
+	footer>div span.label {
+		margin: 0 5px;
+	}
+}
+
+@media (max-width: 500px) {
+	footer {
+		font-size: 15px;
+	}
+
+	#contact_label,
+	#source_label {
+		font-size: 15px;
+	}
+
+	main img {
+		width: 100%;
+	}
+
+	.tb input {
+		width: 100%;
+	}
+
+	#div_btn input {
+		font-size: 1rem;
+		width: 80px;
+		height: 35px;
+	}
+
+	footer span img {
+		width: 20px;
+	}
+
+	footer div span.label {
+		font-size: 12px;
+		margin-top: 5px;
+	}
+}

@@ -1,0 +1,116 @@
+* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
+		}
+
+		/* main */
+		main {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		main img {
+			transition: all 0.5s;
+		}
+
+		main img:hover {
+			transform: scale(1.05);
+		}
+
+		/* footer */
+		footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
+			color: white;
+			border-top: 1px solid white;
+		}
+
+		#contact,
+		#source {
+			display: flex;
+			align-items: center;
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+			transition: all 0.5s;
+		}
+		footer>div span.label:hover {
+			transform: scale(1.05);
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+
+		/* 클래스 속성 */
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
+		/* 반응형 디자인*/
+		@media (max-width: 730px) {
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+		}
+		@media (max-width: 500px) {
+			main img {
+				width: 100%;
+			}			
+			footer {
+				font-size: 15px;
+			}
+			#contact_label, #source_label {
+				font-size: 15px;
+			}
+			footer span img {				
+				width: 20px;
+			}
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
+		}

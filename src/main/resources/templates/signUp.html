@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate : Sign Up</title>
+	<link rel="stylesheet" href="/css/signUp.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/signUp.js"></script>
+</head>
+
+<body>
+	<header>
+		<a href="/">
+			<img src="/images/logo.png" width="500px">
+		</a>
+	</header>
+	<main>
+		<!-- 회원가입 폼: POST /signUp 으로 제출 -->
+		<form action="/signUp" method="post" id="div_signUp">
+			<h2>Sign Up</h2>
+				<div id="div_name" class="tb">
+					<label for="tb_name" class="label">Name</label>
+					<input type="text" id="tb_name" name="name" minlength="3" maxlength="30">
+				</div>
+				<div id="div_email" class="tb">
+					<label for="tb_email" class="label">email</label>
+					<input type="email" id="tb_email" name="email" maxlength="80">
+				</div>
+				<div id="div_phoneNum" class="tb">
+					<label for="tb_phoneNum" class="label">Phone Number</label>
+					<input type="text" id="tb_phoneNum" name="phoneNum" maxlength="13">
+				</div>
+				<div id="div_id" class="tb">
+					<label for="tb_id" class="label">ID</label>
+					<input type="text" id="tb_id" name="id" maxlength="15">
+				</div>
+				<div id="div_pw" class="tb">
+					<label for="tb_pw" class="label">PW</label>
+					<input type="password" id="tb_pw" name="pw" maxlength="15" placeholder="특수문자 포함 8~15자리">
+				</div>
+				<div id="div_pwCheck" class="tb">
+					<label for="tb_pwCheck" class="label">PW Check</label>
+					<input type="password" id="tb_pwCheck" name="pwCheck" maxlength="15">
+				</div>
+				<!-- 서버 측 오류 메시지 (중복 아이디 등) -->
+				<div th:if="${errorMsg}" style="color:red; font-size:0.9em; margin-bottom:8px;" th:text="${errorMsg}"></div>
+				<input type="submit" id="btn_signUp" value="Sign Up">
+		</form>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="/images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate : Log In</title>
+	<link rel="stylesheet" href="/css/login.css">
+	<link rel="stylesheet" href="/css/helpBot.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/logIn.js"></script>
+	<script src="/js/helpBot.js"></script>
+</head>
+
+<body>
+	<header>
+
+	</header>
+	<main>
+		<img src="/images/logo.png" width="500px">
+		<!-- 로그인 폼: POST / 로 제출 -->
+		<form action="/" method="post" id="div_sign">
+			<div id="div_id" class="tb">
+				<label for="tb_id" class="label">ID</label>
+				<input type="text" id="tb_id" name="id">
+			</div>
+			<div id="div_pw" class="tb">
+				<label for="tb_pw" class="label">PW</label>
+				<input type="password" id="tb_pw" name="pw">
+			</div>
+			<!-- 로그인 오류 메시지 표시 -->
+			<div th:if="${loginError}" id="login_error" style="color:red; font-size:0.9em;" th:text="${loginError}"></div>
+			<div id="div_btn">
+				<input type="submit" id="btn_signIn" value="Sign In">
+				<a href="/signUp">
+					<input type="button" id="btn_signUp" value="Sign Up">
+				</a>
+			</div>
+		</form>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="/images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

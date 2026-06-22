@@ -1,0 +1,245 @@
+* {
+			box-sizing: border-box;
+		}
+
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.3);
+			background-repeat: no-repeat;
+		}
+
+		/* header */
+		header {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+		}
+
+		header img {
+			width: 300px;
+		}
+
+		/* main */
+		main {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* form */
+		main form {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			background-color: white;
+			border-radius: 10px;
+			height: 90%;
+			width: 65%;
+		}
+
+		form h2 {
+			color: rgb(10, 85, 197);
+		}
+
+		/* 텍스트 박스 */
+		main form>div.tb {
+			margin-top: 12px;
+			display: inline-flex;
+			align-items: center;
+		}
+
+		/* 라벨 */
+		main form label {
+			display: inline-flex;
+			justify-content: center;
+			width: 100px;
+			text-align: center;
+			font-weight: bold;
+			color: rgb(70, 70, 70);
+		}
+
+		/* 텍스트 박스 */
+		.tb>input {
+			margin-left: 10px;
+			border: 2px solid rgb(116, 114, 114);
+			border-radius: 13px;
+			width: 300px;
+			height: 30px;
+			padding-left: 10px;
+			font-size: 1.1rem;
+		}
+
+		.tb>input:focus {
+			outline: none;
+			border: 2px solid rgb(0, 4, 255);
+		}
+
+		/* 로그인 버튼  */
+		#btn_signUp {
+			float: right;
+			margin-left: 20px;
+			margin-top: 20px;
+			width: 90px;
+			height: 40px;
+			border: 2px solid rgb(255, 255, 255);
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 52%, rgb(1, 73, 255) 100%);
+			color: white;
+			font-size: 1.2rem;
+			font-weight: bold;
+			cursor: pointer;
+			text-align: center;
+		}
+
+		/* footer */
+		footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
+			color: white;
+			border-top: 1px solid white;
+		}
+
+		#contact,
+		#source {
+			display: flex;
+			align-items: center;
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+			transition: all 0.5s;
+		}
+		footer>div span.label:hover {
+			transform: scale(1.05);
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
+		/* 반응형 디자인*/
+		@media (max-width: 730px) {
+			main h2 {
+				margin: 10px;
+			}
+
+			main form>div.tb {
+				margin: 5px 0;
+			}
+
+			/* 라벨 */
+			main form label {
+				width: 50px;
+			}
+
+			/* 텍스트 박스 */
+			.tb>input {
+				width: 80%;
+				height: 30px;
+				padding-left: 10px;
+				font-size: 1.1rem;
+			}
+
+			.tb>input:focus {
+				outline: none;
+				border: 2px solid rgb(0, 4, 255);
+			}
+			#btn_signUp {
+				margin-top: 0;
+			}
+
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+		}
+
+		@media (max-width: 500px) {
+
+			main form {
+				width: 90%;
+				height: 90%;
+			}
+
+			/* 텍스트 박스 */
+			main form>div.tb {
+				margin: 0px 0;				
+			}
+			.tb>input {
+				width: 80%;				
+				height: 25px;
+				padding-left: 10px;
+				font-size: 1rem;
+			}
+
+			form h2 {
+				margin-top: 20px;
+				color: rgb(10, 85, 197);
+			}
+
+			/* 로그인 버튼  */
+			#btn_signUp {				
+				margin-left: 0px;
+				margin-top: 0px;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+			footer span img {				
+				width: 20px;
+			}
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
+		}

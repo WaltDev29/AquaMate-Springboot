@@ -1,0 +1,180 @@
+* {
+			box-sizing: border-box;
+		}
+
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
+		}
+
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: rgba(0, 0, 0, 0.3);
+			background-repeat: no-repeat;
+		}
+
+		/* main */
+		main {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* nav */
+		nav {
+			margin-top: -30px;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		/* nav set */
+		nav>div {
+			margin: 0 10px;
+			text-align: center;
+			color: white;
+		}
+
+		/* nav 버튼 */
+		nav button {
+			width: 90px;
+			height: 90px;
+			border: 3px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+			transition: all 0.5s;
+		}
+		nav button:hover {		
+			transform: scale(1.1);
+		}
+
+		nav button img {
+			width: 100%;
+		}
+
+		/* nav 이름*/
+		nav h3 {
+			margin-top: 5px;
+			font-size: 1.2rem;
+		}
+
+		/* footer */
+		footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: nowrap;
+			padding: 0 20px;
+			color: white;
+			border-top: 1px solid white;
+		}
+
+		#contact,
+		#source {
+			display: flex;
+			align-items: center;
+			margin: 20px auto;
+		}
+
+		footer>div>span:first-child {
+			font-size: 1.2rem;
+		}
+
+		footer>div span.label {
+			margin: 0 20px;
+			transition: all 0.5s;
+		}
+		footer>div span.label:hover {
+			transform: scale(1.05);
+		}
+
+		footer span img {
+			width: 25px;
+			margin-right: 10px;
+		}
+
+		.label {
+			display: inline-flex;
+			align-items: center;
+			background-color: rgba(255, 249, 249, 0.4);
+			border-radius: 8px;
+			padding: 5px;
+		}
+
+		a {
+			text-decoration: none;
+			color: white;
+			cursor: pointer;
+		}
+
+		/* 반응형 디자인*/
+		@media (max-width: 730px) {
+			footer {
+				flex-direction: column;
+			}
+
+			#contact,
+			#source {
+				margin: 10px auto;
+			}
+
+			footer>div span.label {
+				margin: 0 5px;
+			}
+		}
+
+		@media (max-width: 500px) {
+
+			/* nav */
+			nav {
+				margin-top: -30px;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+			}
+
+			/* nav set */
+			nav>div {
+				margin: 0 3px;
+			}
+
+			/* nav 버튼 */
+			nav button {
+				width: 70px;
+				height: 70px;
+			}
+
+			/* nav 이름*/
+			nav h3 {
+				font-size: 1rem;
+			}
+
+			footer {
+				font-size: 15px;
+			}
+			#contact_label,
+			#source_label {
+				font-size: 15px;
+			}
+
+			main img {
+				width: 100%;
+			}
+
+			footer span img {
+				width: 20px;
+			}
+
+			footer div span.label {
+				font-size: 12px;
+				margin-top: 5px;
+			}
+		}

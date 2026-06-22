@@ -1,0 +1,605 @@
+.label {
+	display: inline-flex;
+	align-items: center;
+	background-color: rgba(255, 249, 249, 0.4);
+	border-radius: 8px;
+	padding: 5px;
+}
+
+a,
+a:visited {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.label a {
+	color: white;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header #head a {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	margin-top: 20px;
+}
+
+header a {
+	color: white;
+}
+
+header button {
+	width: 90px;
+	height: 90px;
+	border: 3px solid white;
+	border-radius: 12px;
+	background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+header button:hover {
+	transform: scale(1.1);
+}
+
+header button img {
+	width: 100%;
+}
+
+#head h1 {
+	margin: 10px;
+}
+
+/* nav */
+nav {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* nav set */
+nav>div {
+	text-align: center;
+	color: white;
+}
+
+/* nav 버튼 */
+nav button {
+	width: 50px;
+	height: 50px;
+	border: 2px solid white;
+	border-radius: 12px;
+	background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+	cursor: pointer;
+}
+
+nav button img {
+	width: 100%;
+}
+
+/* nav 이름*/
+nav h3 {
+	margin-top: 5px;
+	font-size: 1rem;
+}
+
+/* main */
+main {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+main #gradient_top {
+	background: linear-gradient(to bottom,
+			rgba(255, 255, 255, 0) 0%,
+			rgba(255, 255, 255, 0.1) 10%,
+			rgba(255, 255, 255, 0.2) 20%,
+			rgba(255, 255, 255, 0.3) 30%,
+			rgba(255, 255, 255, 0.4) 40%,
+			rgba(255, 255, 255, 0.5) 50%,
+			rgba(255, 255, 255, 0.75) 75%,
+			rgba(255, 255, 255, 1) 100%);
+	width: 100%;
+	height: 100px;
+}
+
+main #gradient_bottom {
+	background: linear-gradient(to top,
+			rgba(255, 255, 255, 0) 0%,
+			rgba(255, 255, 255, 0.1) 10%,
+			rgba(255, 255, 255, 0.2) 20%,
+			rgba(255, 255, 255, 0.3) 30%,
+			rgba(255, 255, 255, 0.4) 40%,
+			rgba(255, 255, 255, 0.5) 50%,
+			rgba(255, 255, 255, 0.75) 75%,
+			rgba(255, 255, 255, 1) 100%);
+	width: 100%;
+	height: 50px;
+}
+
+main section {
+	flex-grow: 1;
+	width: 100%;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+main nav {
+	display: flex;
+	flex-direction: row;
+	width: 90%;
+	justify-content: space-between;
+}
+
+main nav h3 {
+	text-align: center;
+	flex: 1;
+	font-size: 1.2rem;
+	padding: 0 50px;
+}
+
+main nav h3:nth-child(2n) {
+	border-left: 1px solid rgb(0, 183, 255);
+	border-right: 1px solid rgb(0, 183, 255);
+}
+
+main #main_container {
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+	justify-content: center;
+	width: 1200px;
+	height: 100%;
+	flex-wrap: wrap;
+}
+
+#tank {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background-image: url(../images/tank.png);
+	background-size: cover;
+	background-position: center;
+	border: 1px solid rgb(207, 207, 207);
+}
+
+#tank #match {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.match_card {
+	display: flex;
+	flex-direction: column;
+	width: 140px;
+	height: 170px;
+	margin: 20px 10px;
+	border: 1px solid rgb(187, 187, 187);
+	background-color: white;
+	border-radius: 10px;
+	overflow: hidden;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.match_card:hover {
+	transform: scale(1.05);
+}
+
+#art_head {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#art_head h3 {
+	margin: 5px;
+	padding: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.starBox {
+	width: 25px;
+	height: 25px;
+	background-color: #009DFF;
+	border: 1px solid rgb(190, 190, 190);
+	margin: 5px;
+	border-radius: 4px;
+	background-image: url(../images/Star.png);
+	background-position: center;
+	background-size: 95%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.starBox.active {
+	background-image: url(../images/star_yellow.png);
+}
+
+.match_card img {
+	width: 100%;
+	height: 100%;
+}
+
+#tank #match_heart {
+	width: 100px;
+	margin: 20px
+}
+
+#tank #result {
+	color: #ff64a7;
+	background-color: rgba(255, 255, 255, 0.7);
+	border-radius: 5px;
+	font-size: 1.3rem;
+	font-weight: bold;
+	padding: 3px 8px;
+}
+
+#main_container #search {
+	border-bottom: 1px solid rgba(164, 219, 255, 0.568);
+	padding-bottom: 15px;
+}
+
+#main_container aside {
+	height: 100%;
+	border: 1px solid rgba(207, 207, 207, 0.664);
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 10%, rgba(243, 250, 255, 1) 20%, rgba(190, 226, 255, 1) 59%, rgba(134, 215, 255, 1) 100%);
+}
+
+#item_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	height: 600px;
+	overflow-y: auto;
+}
+
+.aside_card {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 90px;
+	border: 1px solid rgb(199, 235, 255);
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
+	background-color: white;
+	transition: all 0.3s;
+}
+
+.aside_card:hover {
+	opacity: 0.7;
+	color: gray;
+}
+
+.aside_card img {
+	width: 80px;
+	height: 80px;
+	border-radius: 5px;
+	border: 1px solid rgb(192, 192, 192);
+}
+
+.aside_card .aside_describe {
+	margin: 0 10px;
+}
+
+.aside_describe h4 {
+	margin: 0;
+}
+
+.star_container {
+	flex-grow: 1;
+	height: 100%;
+}
+
+.star_container .starBox {
+	float: right;
+	border: 1px solid rgb(190, 190, 190);
+}
+
+#grp_search,
+#grp_sort {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	justify-content: center;
+	padding: 0 20px;
+	margin-top: 15px;
+}
+
+#search input,
+#search select {
+	margin-right: 20px;
+	width: 200px;
+	height: 40px;
+	border: 3px solid rgb(81, 185, 255);
+	background-color: white;
+	border-radius: 8px;
+	font-size: 1.2rem;
+}
+
+#search select {
+	text-align: center;
+	cursor: pointer;
+}
+
+#search input:focus,
+#search select:focus {
+	outline: none;
+}
+
+#search button {
+	color: white;
+	padding: 7px;
+	font-weight: bold;
+	font-size: 1.2rem;
+	border: none;
+	border-radius: 12px;
+	background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+	cursor: pointer;
+}
+
+#search button img {
+	width: 20px;
+	margin-left: 5px;
+}
+
+#btn_filter {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+/* footer */
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: nowrap;
+	padding: 0 20px;
+	color: white;
+	border-top: 1px solid white;
+}
+
+#contact,
+#source {
+	display: flex;
+	align-items: center;
+	margin: 20px auto;
+}
+
+footer>div>span:first-child {
+	font-size: 1.2rem;
+}
+
+footer>div span.label {
+	margin: 0 20px;
+	transition: all 0.5s;
+}
+
+footer>div span.label:hover {
+	transform: scale(1.05);
+}
+
+footer span img {
+	width: 25px;
+	margin-right: 10px;
+}
+
+/* 반응형 디자인*/
+@media (max-width:1200px) {
+	main #main_container {
+		justify-content: center;
+		width: 100%;
+	}
+
+	#tank {
+		justify-self: end;
+		width: 90%;
+	}
+}
+
+@media (max-width:900px) {
+	main #main_container {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: nowrap;
+		align-items: center;
+	}
+
+	#tank {
+		height: 500px;
+		margin-bottom: 10px;
+	}
+
+	main nav h3 {
+		padding: 0 30px;
+	}
+
+	#main_container aside {
+		height: 100%;
+	}
+
+	#item_container {
+		margin-top: 0;
+		height: 600px;
+		overflow-y: auto;
+	}
+
+	#grp_search,
+	#grp_sort {
+		display: flex;
+		justify-content: space-between;
+	}
+
+}
+
+@media (max-width: 730px) {
+	#head {
+		display: none;
+	}
+
+	#main_container #search {
+		margin: 0 50px;
+	}
+
+	main #search input {
+		font-size: 0.9rem;
+	}
+
+	main nav h3 {
+		font-size: 1.5rem;
+		padding: 0 10px;
+	}
+
+	footer {
+		flex-direction: column;
+	}
+
+	#contact,
+	#source {
+		margin: 10px auto;
+	}
+
+	footer>div span.label {
+		margin: 0 5px;
+	}
+
+}
+
+@media (max-width: 600px) {
+	#main_container #search {
+		margin: 0 0px;
+	}
+
+	.match_card {
+		width: 110px;
+		height: 140px;
+	}
+
+	#art_head h3 {
+		font-size: 1rem;
+	}
+
+	#tank #match_heart {
+		width: 50px;
+	}
+
+	#tank #result {
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 500px) {
+
+	header {
+		flex-direction: column;
+	}
+
+	/* nav */
+	header nav {
+		margin: -10px;
+		margin-bottom: -50px;
+	}
+
+	/* nav 버튼 */
+	header nav button {
+		margin: 0 10px;
+		width: 60px;
+		height: 60px;
+	}
+
+	/* nav 이름*/
+	header nav h3 {
+		margin-top: 0px;
+		font-size: 0.9rem;
+	}
+
+	section {
+		padding: 0;
+	}
+
+	.match_card {
+		width: 100px;
+		height: 120px;
+	}
+
+	#art_head h3 {
+		font-size: 0.8rem;
+	}
+
+	#tank #match_heart {
+		margin: 0;
+	}
+
+	main #search button {
+		font-size: 15px;
+	}
+
+	main nav h3 {
+		font-size: 1rem;
+	}
+
+	main #item_container {
+		width: 100%;
+	}
+
+	footer {
+		font-size: 15px;
+	}
+
+	#contact_label,
+	#source_label {
+		font-size: 15px;
+	}
+
+	footer span img {
+		width: 20px;
+	}
+
+	footer div span.label {
+		font-size: 12px;
+		margin-top: 5px;
+	}
+}

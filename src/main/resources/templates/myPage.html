@@ -4,16 +4,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Aqua Mate : Dictionary</title>
-	<link rel="stylesheet" href="/css/dictionary.css">
+	<title>Aqua Mate : My Page</title>
+	<link rel="stylesheet" href="/css/myPage.css">
 	<link rel="stylesheet" href="/css/helpBot.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="/js/dictionary.js"></script>
 	<script src="/js/helpBot.js"></script>
+	<script src="/js/myPage.js"></script>
 </head>
 
 <body>
-
 	<header>
 		<div style="flex: 1;">
 			<a href="/" style="display: inline-block; margin-left: 20px;">
@@ -21,9 +20,9 @@
 			</a>
 		</div>
 		<div id="head" style="display: flex; justify-content: center;">
-			<a href="/dictionary">
-				<button id="btn_dic"><img src="/images/book.png"></button>
-				<h1>Dictionary</h1>
+			<a href="/myPage">
+				<button id="btn_mypage"><img src="/images/user.png"></button>
+				<h1>My Page</h1>
 			</a>
 		</div>
 		<div style="flex: 1; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; margin-right: 20px; margin-top: 10px;">
@@ -65,41 +64,33 @@
 		</div>
 	</header>
 	<main>
-		<div id="gradient_top">
-		</div>
+		<div id="gradient_top"></div>
 		<section>
-			<div id="search">
-				<button id="btn_filter">Filter<img src="/images/filter.png"></button>
-				<input type="text" id="tb_search">
-				<button id="btn_search">Search</button>
+			<h2 class="section-title">My Profile</h2>
+			<div class="profile-card">
+				<div class="profile-avatar">
+					<img src="/images/user.png" alt="User Avatar">
+				</div>
+				<div class="profile-info">
+					<p><span class="label-title">이름</span> <span class="value" th:text="${user.name}"></span></p>
+					<p><span class="label-title">아이디</span> <span class="value" th:text="${user.id}"></span></p>
+					<p><span class="label-title">이메일</span> <span class="value" th:text="${user.email}"></span></p>
+					<p><span class="label-title">전화번호</span> <span class="value" th:text="${user.phoneNum}"></span></p>
+				</div>
+				<div class="profile-action">
+					<button class="edit-btn" onclick="alert('정보 수정 페이지는 준비 중입니다.')">정보 수정</button>
+				</div>
 			</div>
-			<nav>
-				<h3><a href="">바다</a></h3>
-				<h3><a href="">민물</a></h3>
-				<h3><a href="">수온</a></h3>
-				<h3><a href="">크기</a></h3>
-				<h3><a href="">성격</a></h3>
-			</nav>
-			<div id="item_container"></div>
+			
+			<h2 class="section-title" style="margin-top: 50px;">Bookmarked Fish</h2>
+			<div id="item_container">
+				<!-- js에서 불러와서 그려짐 -->
+			</div>
+			<div id="no-bookmark-msg" style="display: none; padding: 40px; font-size: 1.2rem; color: #666;">
+				즐겨찾기한 물고기가 없습니다. 도감에서 별 모양 버튼을 눌러 추가해보세요!
+			</div>
 		</section>
-		<div id="gradient_bottom">
-		</div>
-		<div id="helpBtn"></div>
-		<div id="helpModal">
-			<div id="helpHeader"> 
-				Help Center
-				<span class="cancelBtn">×</span>
-			</div>
-			<div id="apiKey">
-				<input type="text" id="apiKeyTb" placeholder="API Key" autocomplete="off">
-				<input type="button" id="apiKeySendBtn">
-			</div>
-			<div id="helpScreen"></div>
-			<div id="helpFooter">
-				<input type="text" class="tb">
-				<input type="button" class="sendBtn">
-			</div>
-		</div>
+		<div id="gradient_bottom"></div>
 	</main>
 	<footer>
 		<div id="contact">
@@ -115,5 +106,4 @@
 		</div>
 	</footer>
 </body>
-
 </html>

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<div style="display: flex; justify-content: flex-end; padding: 20px 40px 20px 0; gap: 15px; width: 100%;">
+	<div style="display: flex; justify-content: flex-end; padding: 20px 40px 0 0; gap: 15px; width: 100%;">
 		<th:block th:if="${session.userId == null}">
 			<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
 			<a href="/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
@@ -20,7 +20,7 @@
 			<a href="/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
 		</th:block>
 	</div>
-	<header style="text-align: center; padding-top: 20px;">
+	<header style="text-align: center; padding-top: 0px;">
 		<a href="/">
 			<img src="/images/logo.png" width="500px">
 		</a>
@@ -29,33 +29,33 @@
 		<!-- 회원가입 폼: POST /signUp 으로 제출 -->
 		<form action="/signUp" method="post" id="div_signUp">
 			<h2>Sign Up</h2>
-				<div id="div_name" class="tb">
-					<label for="tb_name" class="label">Name</label>
-					<input type="text" id="tb_name" name="name" minlength="3" maxlength="30">
-				</div>
-				<div id="div_email" class="tb">
-					<label for="tb_email" class="label">email</label>
-					<input type="email" id="tb_email" name="email" maxlength="80">
-				</div>
-				<div id="div_phoneNum" class="tb">
-					<label for="tb_phoneNum" class="label">Phone Number</label>
-					<input type="text" id="tb_phoneNum" name="phoneNum" maxlength="13">
-				</div>
-				<div id="div_id" class="tb">
-					<label for="tb_id" class="label">ID</label>
-					<input type="text" id="tb_id" name="id" maxlength="15">
-				</div>
-				<div id="div_pw" class="tb">
-					<label for="tb_pw" class="label">PW</label>
-					<input type="password" id="tb_pw" name="pw" maxlength="15" placeholder="특수문자 포함 8~15자리">
-				</div>
-				<div id="div_pwCheck" class="tb">
-					<label for="tb_pwCheck" class="label">PW Check</label>
-					<input type="password" id="tb_pwCheck" name="pwCheck" maxlength="15">
-				</div>
-				<!-- 서버 측 오류 메시지 (중복 아이디 등) -->
-				<div th:if="${errorMsg}" style="color:red; font-size:0.9em; margin-bottom:8px;" th:text="${errorMsg}"></div>
-				<input type="submit" id="btn_signUp" value="Sign Up">
+			<div id="div_name" class="tb">
+				<label for="tb_name" class="label">Name</label>
+				<input type="text" id="tb_name" name="name" minlength="3" maxlength="30">
+			</div>
+			<div id="div_email" class="tb">
+				<label for="tb_email" class="label">email</label>
+				<input type="email" id="tb_email" name="email" maxlength="80">
+			</div>
+			<div id="div_phoneNum" class="tb">
+				<label for="tb_phoneNum" class="label">Phone Number</label>
+				<input type="text" id="tb_phoneNum" name="phoneNum" maxlength="13">
+			</div>
+			<div id="div_id" class="tb">
+				<label for="tb_id" class="label">ID</label>
+				<input type="text" id="tb_id" name="id" maxlength="15">
+			</div>
+			<div id="div_pw" class="tb">
+				<label for="tb_pw" class="label">PW</label>
+				<input type="password" id="tb_pw" name="pw" maxlength="15" placeholder="특수문자 포함 8~15자리">
+			</div>
+			<div id="div_pwCheck" class="tb">
+				<label for="tb_pwCheck" class="label">PW Check</label>
+				<input type="password" id="tb_pwCheck" name="pwCheck" maxlength="15">
+			</div>
+			<!-- 서버 측 오류 메시지 (중복 아이디 등) -->
+			<div th:if="${errorMsg}" style="color:red; font-size:0.9em; margin-bottom:8px;" th:text="${errorMsg}"></div>
+			<input type="submit" id="btn_signUp" value="Sign Up">
 		</form>
 	</main>
 	<footer>

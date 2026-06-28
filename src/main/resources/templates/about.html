@@ -14,16 +14,18 @@
 <body>
 
 	<header>
-		<a href="/">
-			<img src="/images/logo.png" width="200px">
-		</a>
-		<div id="head">
+		<div style="flex: 1;">
+			<a href="/" style="display: inline-block; margin-left: 20px;">
+				<img src="/images/logo.png" width="200px">
+			</a>
+		</div>
+		<div id="head" style="display: flex; justify-content: center;">
 			<a href="/about">
 				<button id="btn_about"><img src="/images/bookmark.png"></button>
 				<h1>About</h1>
 			</a>
 		</div>
-		<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px; margin-right: 20px; margin-top: 10px;">
+		<div style="flex: 1; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; margin-right: 20px; margin-top: 10px;">
 			<div style="display: flex; gap: 15px; margin-right: 15px;">
 				<th:block th:if="${session.userId == null}">
 					<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
@@ -50,6 +52,12 @@
 					<a href="/about">
 						<button id="btn_about"><img src="/images/bookmark.png"></button>
 						<h3>About</h3>
+					</a>
+				</div>
+				<div id="mypage_nav">
+					<a href="/myPage">
+						<button id="btn_mypage_nav"><img src="/images/user.png"></button>
+						<h3>My Page</h3>
 					</a>
 				</div>
 			</nav>

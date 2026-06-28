@@ -1,7 +1,14 @@
 package kr.ac.kopo.waltdev29.aquamate.controller;
 
+import jakarta.servlet.http.HttpSession;
+import kr.ac.kopo.waltdev29.aquamate.domain.User;
+import kr.ac.kopo.waltdev29.aquamate.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Optional;
 
 /**
  * 모든 HTML 페이지 서빙을 담당하는 Controller.
@@ -17,7 +24,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  *   about.html     → /about
  */
 @Controller
+@RequiredArgsConstructor
 public class PageController {
+
+    private final UserService userService;
 
     /** 사용자 홈 (새로운 진입점) */
     @GetMapping("/")
@@ -60,5 +70,22 @@ public class PageController {
     @GetMapping("/about")
     public String about() {
         return "about";
+    }
+
+    /** 마이페이지 */
+    @GetMapping("/myPage")
+    public String myPage(HttpSession session, Model model) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            return "redirect:/login";
+        }
+        Optional<User> userOpt = userService.findById(userId);
+        if (userOpt.isPresent()) {
+            model.addAttribute("user", userOpt.get());
+            return "myPage";
+        } else {
+            session.invalidate();
+            return "redirect:/login";
+        }
     }
 }

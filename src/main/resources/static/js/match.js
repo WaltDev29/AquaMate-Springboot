@@ -6,12 +6,14 @@ $(document).ready(function () {
         .then(response => response.json())
         .then(data => {
             const fishKeys = Object.keys(data);
+            const currentBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
 
             // DOM 렌더링 최적화: 1회 순회 및 Template Literal 활용, 한 번에 append
             const htmlString = fishKeys.map(fishKey => {
                 const fish = data[fishKey];
+                const activeClass = currentBookmarks.includes(fishKey) ? "active" : "";
                 return `
-                    <article class="aside_card">
+                    <article class="aside_card" data-key="${fishKey}">
                         <img src="/${fish.img}" alt="${fish.name}">
                         <div class="aside_describe">
                             <a href="/fish_info?fish=${fishKey}">
@@ -20,7 +22,7 @@ $(document).ready(function () {
                             <p>바다 &nbsp;&nbsp;20~25C</p>
                         </div>
                         <div class="star_container">
-                            <button class="starBox"></button>
+                            <button class="starBox ${activeClass}"></button>
                         </div>
                     </article>
                 `;
@@ -67,10 +69,22 @@ $(document).ready(function () {
         })
     }
 
-    // 즐겨찾기 버튼 클릭 이벤트 (CSS 클래스 토글 방식)
+    // 즐겨찾기 버튼 클릭 이벤트 (CSS 클래스 토글 및 localStorage 동기화)
     $(document).on("click", ".starBox", function (e) {
         e.stopPropagation();
         e.preventDefault();
         $(this).toggleClass("active");
+
+        let $article = $(this).closest("article");
+        let fishKey = $article.attr("data-key");
+        if (!fishKey) return;
+
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        if ($(this).hasClass("active")) {
+            if (!bookmarks.includes(fishKey)) bookmarks.push(fishKey);
+        } else {
+            bookmarks = bookmarks.filter(k => k !== fishKey);
+        }
+        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
     });
 })

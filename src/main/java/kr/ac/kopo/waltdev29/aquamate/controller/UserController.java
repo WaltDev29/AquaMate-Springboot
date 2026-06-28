@@ -61,7 +61,7 @@ public class UserController {
         }
 
         // 가입 성공 → 로그인 페이지로 리다이렉트
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     // ─────────────────────────────────────────────
@@ -69,10 +69,10 @@ public class UserController {
     // ─────────────────────────────────────────────
 
     /**
-     * POST / - 로그인 폼 제출 처리.
-     * 성공 시 세션에 userId 저장 후 userHome으로 리다이렉트.
+     * POST /login - 로그인 폼 제출 처리.
+     * 성공 시 세션에 userId 저장 후 메인 페이지(/)로 리다이렉트.
      */
-    @PostMapping("/")
+    @PostMapping("/login")
     public String login(@RequestParam String id,
                         @RequestParam String pw,
                         HttpSession session,
@@ -81,15 +81,15 @@ public class UserController {
         boolean valid = userService.login(id, pw);
         if (!valid) {
             model.addAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
-            return "index";
+            return "login";
         }
 
         session.setAttribute("userId", id);
         log.info("[UserController] 로그인 성공: {}", id);
-        return "redirect:/userHome";
+        return "redirect:/";
     }
 
-    /** GET /logout - 세션 무효화 후 로그인 페이지로 */
+    /** GET /logout - 세션 무효화 후 메인 페이지로 */
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

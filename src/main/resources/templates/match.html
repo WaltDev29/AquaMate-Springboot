@@ -13,8 +13,9 @@
 </head>
 
 <body>
+
 	<header>
-		<a href="/userHome">
+		<a href="/">
 			<img src="/images/logo.png" width="200px">
 		</a>
 		<div id="head">
@@ -23,26 +24,37 @@
 				<h1>Match</h1>
 			</a>
 		</div>
-		<nav>
-			<div id="h_dic">
-				<a href="/dictionary">
-					<button id="btn_dic"><img src="/images/book.png"></button>
-					<h3>Dictionary</h3>
-				</a>
+		<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 15px; margin-right: 20px; margin-top: 10px;">
+			<div style="display: flex; gap: 15px; margin-right: 15px;">
+				<th:block th:if="${session.userId == null}">
+					<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
+					<a href="/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
+				</th:block>
+				<th:block th:if="${session.userId != null}">
+					<a href="/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
+				</th:block>
 			</div>
-			<div id="h_match">
-				<a href="/match">
-					<button id="btn_n_match"><img src="/images/heart.png"></button>
-					<h3>Match</h3>
-				</a>
-			</div>
-			<div id="h_about">
-				<a href="/about">
-					<button id="btn_about"><img src="/images/bookmark.png"></button>
-					<h3>About</h3>
-				</a>
-			</div>
-		</nav>
+			<nav>
+				<div id="dic">
+					<a href="/dictionary">
+						<button id="btn_dic"><img src="/images/book.png"></button>
+						<h3>Dictionary</h3>
+					</a>
+				</div>
+				<div id="match">
+					<a href="/match">
+						<button id="btn_match"><img src="/images/heart.png"></button>
+						<h3>Match</h3>
+					</a>
+				</div>
+				<div id="about">
+					<a href="/about">
+						<button id="btn_about"><img src="/images/bookmark.png"></button>
+						<h3>About</h3>
+					</a>
+				</div>
+			</nav>
+		</div>
 	</header>
 	<main>
 		<div id="gradient_top">

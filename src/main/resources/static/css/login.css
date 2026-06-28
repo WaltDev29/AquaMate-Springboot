@@ -25,19 +25,12 @@ main {
 }
 
 main img {
-	cursor: pointer;
-	position: relative;
-	top: 40px;
-	transition: all 1s ease;
+	margin-bottom: 20px;
 }
 
 /* 로그인 */
 #div_sign {
-	margin-top: -40px;
 	padding: 0;
-	visibility: hidden;
-	opacity: 0;
-	transition: all 1s ease;
 }
 
 /* 텍스트 박스 */

@@ -19,10 +19,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    /** 로그인 페이지 (진입점) */
+    /** 사용자 홈 (새로운 진입점) */
     @GetMapping("/")
-    public String index() {
+    public String userHome() {
         return "index";
+    }
+
+    /** 로그인 페이지 */
+    @GetMapping("/login")
+    public String index() {
+        return "login";
     }
 
     /** 회원가입 페이지 */
@@ -31,11 +37,6 @@ public class PageController {
         return "signUp";
     }
 
-    /** 사용자 홈 */
-    @GetMapping("/userHome")
-    public String userHome() {
-        return "userHome";
-    }
 
     /** 물고기 도감 목록 */
     @GetMapping("/dictionary")

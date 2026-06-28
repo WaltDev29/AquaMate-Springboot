@@ -4,8 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Aqua Mate</title>
-	<link rel="stylesheet" href="/css/index.css">
+	<title>Aqua Mate : Log In</title>
+	<link rel="stylesheet" href="/css/login.css">
 	<link rel="stylesheet" href="/css/helpBot.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="/js/helpBot.js"></script>
@@ -23,42 +23,26 @@
 	</header>
 	<main>
 		<img src="/images/logo.png" width="500px">
-		<nav>
-			<div id="dic">
-				<a href="/dictionary">
-					<button id="btn_dic"><img src="/images/book.png"></button>
-					<h3>Dictionary</h3>
+		<!-- 로그인 폼: POST /login 로 제출 -->
+		<form action="/login" method="post" id="div_sign">
+			<div id="div_id" class="tb">
+				<label for="tb_id" class="label">ID</label>
+				<input type="text" id="tb_id" name="id">
+			</div>
+			<div id="div_pw" class="tb">
+				<label for="tb_pw" class="label">PW</label>
+				<input type="password" id="tb_pw" name="pw">
+			</div>
+			<!-- 로그인 오류 메시지 표시 -->
+			<div th:if="${loginError}" id="login_error" style="color:red; font-size:0.9em;" th:text="${loginError}">
+			</div>
+			<div id="div_btn">
+				<input type="submit" id="btn_signIn" value="Sign In">
+				<a href="/signUp">
+					<input type="button" id="btn_signUp" value="Sign Up">
 				</a>
 			</div>
-			<div id="match">
-				<a href="/match">
-					<button id="btn_match"><img src="/images/heart.png"></button>
-					<h3>Match</h3>
-				</a>
-			</div>
-			<div id="about">
-				<a href="/about">
-					<button id="btn_about"><img src="/images/bookmark.png"></button>
-					<h3>About</h3>
-				</a>
-			</div>
-		</nav>
-		<div id="helpBtn"></div>
-		<div id="helpModal">
-			<div id="helpHeader"> 
-				Help Center
-				<span class="cancelBtn">×</span>
-			</div>
-			<div id="apiKey">
-				<input type="text" id="apiKeyTb" placeholder="API Key" autocomplete="off">
-				<input type="button" id="apiKeySendBtn">
-			</div>
-			<div id="helpScreen"></div>
-			<div id="helpFooter">
-				<input type="text" class="tb">
-				<input type="button" class="sendBtn">
-			</div>
-		</div>
+		</form>
 	</main>
 	<footer>
 		<div id="contact">

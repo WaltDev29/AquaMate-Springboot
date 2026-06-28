@@ -2,6 +2,11 @@
 			box-sizing: border-box;
 		}
 
+		html {
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-repeat: no-repeat;
+		}
+
 		html,
 		body {
 			height: 100%;
@@ -11,7 +16,7 @@
 		body {
 			display: flex;
 			flex-direction: column;
-			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
+			background-color: rgba(0, 0, 0, 0.3);
 			background-repeat: no-repeat;
 		}
 
@@ -24,12 +29,42 @@
 			justify-content: center;
 		}
 
-		main img {
-			transition: all 0.5s;
+		/* nav */
+		nav {
+			margin-top: -30px;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
 		}
 
-		main img:hover {
-			transform: scale(1.05);
+		/* nav set */
+		nav>div {
+			margin: 0 10px;
+			text-align: center;
+			color: white;
+		}
+
+		/* nav 버튼 */
+		nav button {
+			width: 90px;
+			height: 90px;
+			border: 3px solid white;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgb(0, 187, 255) 0%, rgb(0, 187, 255) 50%, rgb(1, 73, 255) 100%);
+			cursor: pointer;
+			transition: all 0.5s;
+		}
+		nav button:hover {		
+			transform: scale(1.1);
+		}
+
+		nav button img {
+			width: 100%;
+		}
+
+		/* nav 이름*/
+		nav h3 {
+			margin-top: 5px;
+			font-size: 1.2rem;
 		}
 
 		/* footer */
@@ -67,7 +102,6 @@
 			margin-right: 10px;
 		}
 
-		/* 클래스 속성 */
 		.label {
 			display: inline-flex;
 			align-items: center;
@@ -79,6 +113,7 @@
 		a {
 			text-decoration: none;
 			color: white;
+			cursor: pointer;
 		}
 
 		/* 반응형 디자인*/
@@ -96,19 +131,48 @@
 				margin: 0 5px;
 			}
 		}
+
 		@media (max-width: 500px) {
-			main img {
-				width: 100%;
-			}			
+
+			/* nav */
+			nav {
+				margin-top: -30px;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+			}
+
+			/* nav set */
+			nav>div {
+				margin: 0 3px;
+			}
+
+			/* nav 버튼 */
+			nav button {
+				width: 70px;
+				height: 70px;
+			}
+
+			/* nav 이름*/
+			nav h3 {
+				font-size: 1rem;
+			}
+
 			footer {
 				font-size: 15px;
 			}
-			#contact_label, #source_label {
+			#contact_label,
+			#source_label {
 				font-size: 15px;
 			}
-			footer span img {				
+
+			main img {
+				width: 100%;
+			}
+
+			footer span img {
 				width: 20px;
 			}
+
 			footer div span.label {
 				font-size: 12px;
 				margin-top: 5px;

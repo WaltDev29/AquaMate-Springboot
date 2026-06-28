@@ -11,7 +11,16 @@
 </head>
 
 <body>
-	<header>
+	<div style="display: flex; justify-content: flex-end; padding: 20px 40px 20px 0; gap: 15px; width: 100%;">
+		<th:block th:if="${session.userId == null}">
+			<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
+			<a href="/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
+		</th:block>
+		<th:block th:if="${session.userId != null}">
+			<a href="/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
+		</th:block>
+	</div>
+	<header style="text-align: center; padding-top: 20px;">
 		<a href="/">
 			<img src="/images/logo.png" width="500px">
 		</a>

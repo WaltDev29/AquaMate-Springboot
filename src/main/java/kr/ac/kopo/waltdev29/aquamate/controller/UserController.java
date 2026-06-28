@@ -64,6 +64,34 @@ public class UserController {
         return "redirect:/login";
     }
 
+    /**
+     * POST /editInfo - 회원정보 수정 제출 처리.
+     */
+    @PostMapping("/editInfo")
+    public String editInfo(@Valid @ModelAttribute User user,
+                           BindingResult bindingResult,
+                           HttpSession session,
+                           Model model) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) return "redirect:/login";
+
+        // ID는 세션 값으로 고정 (위조 방지)
+        user.setId(userId);
+
+        if (user.getPwCheck() != null && !user.getPw().equals(user.getPwCheck())) {
+            bindingResult.rejectValue("pwCheck", "mismatch", "비밀번호가 일치하지 않습니다.");
+        }
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            model.addAttribute("user", user);
+            return "editInfo";
+        }
+
+        userService.updateUserInfo(userId, user);
+        return "redirect:/myPage";
+    }
+
     // ─────────────────────────────────────────────
     // 로그인 처리
     // ─────────────────────────────────────────────

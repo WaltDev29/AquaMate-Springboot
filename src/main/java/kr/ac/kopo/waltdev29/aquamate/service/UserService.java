@@ -20,4 +20,6 @@ public interface UserService {
     boolean addBookmark(String userId, String fishKey);
     boolean removeBookmark(String userId, String fishKey);
     java.util.Set<String> getBookmarks(String userId);
+
+    boolean updateUserInfo(String userId, User updatedUser);
 }

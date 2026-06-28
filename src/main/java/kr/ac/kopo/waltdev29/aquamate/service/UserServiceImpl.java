@@ -64,4 +64,13 @@ public class UserServiceImpl implements UserService {
     public java.util.Set<String> getBookmarks(String userId) {
         return userRepository.findById(userId).map(User::getBookmarks).orElseGet(java.util.HashSet::new);
     }
+
+    @Override
+    public boolean updateUserInfo(String userId, User updatedUser) {
+        return userRepository.findById(userId).map(user -> {
+            updatedUser.setBookmarks(user.getBookmarks());
+            userRepository.save(updatedUser);
+            return true;
+        }).orElse(false);
+    }
 }

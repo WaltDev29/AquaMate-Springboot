@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Aqua Mate : Edit Info</title>
+	<link rel="stylesheet" href="/css/editInfo.css">
+	<link rel="stylesheet" href="/css/helpBot.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="/js/helpBot.js"></script>
+	<script>
+		$(document).ready(function () {
+			// 전화번호 문자 입력 제한 & 하이픈 자동 입력
+			$("#tb_phoneNum").keydown(function (e) {
+				let value = $(this).val();
+
+				// 숫자 이외의 문자 입력 막기
+				if ((e.key > '9' || e.key < '0') && e.key !== "Backspace" && e.key !== "Tab") e.preventDefault();
+
+				// 하이픈 자동 입력
+				if (e.key !== "Backspace" && e.key !== "Tab") {
+					if (value.length === 3 || value.length === 8) value += '-';
+				}
+				// 하이픈 자동 제거
+				else if (e.key === "Backspace" && (value.length === 5 || value.length === 10)) {
+					value = value.slice(0, -1);
+				}
+				$(this).val(value);
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<header>
+		<div style="flex: 1;">
+			<a href="/" style="display: inline-block; margin-left: 20px;">
+				<img src="/images/logo.png" width="200px">
+			</a>
+		</div>
+		<div id="head" style="display: flex; justify-content: center;">
+			<a href="/myPage">
+				<button id="btn_mypage"><img src="/images/user.png"></button>
+				<h1>Edit Info</h1>
+			</a>
+		</div>
+		<div
+			style="flex: 1; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; margin-right: 20px; margin-top: 10px;">
+			<div style="display: flex; gap: 15px; margin-right: 15px;">
+				<th:block th:if="${session.userId == null}">
+					<a href="/login"
+						style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
+					<a href="/signUp"
+						style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
+				</th:block>
+				<th:block th:if="${session.userId != null}">
+					<a href="/logout"
+						style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
+				</th:block>
+			</div>
+			<nav>
+				<div id="dic">
+					<a href="/dictionary">
+						<button id="btn_dic"><img src="/images/book.png"></button>
+						<h3>Dictionary</h3>
+					</a>
+				</div>
+				<div id="match">
+					<a href="/match">
+						<button id="btn_match"><img src="/images/heart.png"></button>
+						<h3>Match</h3>
+					</a>
+				</div>
+				<div id="about">
+					<a href="/about">
+						<button id="btn_about"><img src="/images/bookmark.png"></button>
+						<h3>About</h3>
+					</a>
+				</div>
+				<div id="mypage_nav">
+					<a href="/myPage">
+						<button id="btn_mypage_nav"><img src="/images/user.png"></button>
+						<h3>My Page</h3>
+					</a>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<main>
+		<div id="gradient_top"></div>
+		<section>
+			<form action="/editInfo" method="post" id="div_editInfo">
+				<h2 class="section-title">Edit Info</h2>
+				<div id="div_id" class="tb">
+					<label for="tb_id" class="label">ID (수정불가)</label>
+					<input type="text" id="tb_id" name="id" maxlength="15" th:value="${user.id}" readonly
+						style="background-color: #eee; cursor: not-allowed; color: #888;">
+				</div>
+				<div id="div_pw" class="tb">
+					<label for="tb_pw" class="label">New PW</label>
+					<input type="password" id="tb_pw" name="pw" maxlength="15" placeholder="변경할 비밀번호" required>
+				</div>
+				<div id="div_pwCheck" class="tb">
+					<label for="tb_pwCheck" class="label">PW Check</label>
+					<input type="password" id="tb_pwCheck" name="pwCheck" maxlength="15" placeholder="비밀번호 확인" required>
+				</div>
+				<div id="div_name" class="tb">
+					<label for="tb_name" class="label">Name</label>
+					<input type="text" id="tb_name" name="name" minlength="2" maxlength="30" th:value="${user.name}"
+						required>
+				</div>
+				<div id="div_email" class="tb">
+					<label for="tb_email" class="label">Email</label>
+					<input type="email" id="tb_email" name="email" maxlength="80" th:value="${user.email}" required>
+				</div>
+				<div id="div_phoneNum" class="tb">
+					<label for="tb_phoneNum" class="label">Phone Number</label>
+					<input type="text" id="tb_phoneNum" name="phoneNum" maxlength="13" th:value="${user.phoneNum}"
+						required>
+				</div>
+
+				<!-- 서버 측 오류 메시지 -->
+				<div th:if="${errors}" style="color:red; font-size:0.9em; margin-bottom:15px; text-align:center;">
+					<div th:each="err : ${errors}" th:text="${err.defaultMessage}"></div>
+				</div>
+
+				<div class="action-buttons">
+					<button type="button" class="btn cancel-btn" onclick="location.href='/myPage'">Cancel</button>
+					<input type="submit" id="btn_edit" class="btn" value="Save Changes">
+				</div>
+			</form>
+		</section>
+		<div id="gradient_bottom"></div>
+	</main>
+	<footer>
+		<div id="contact">
+			<span id="contact_label">Contact</span>
+			<span class="label"><img src="/images/github.png" id="img_github"><a
+					href="https://github.com/WaltDev29">WaltDev29</a></span>
+			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+		</div>
+		<div id="source">
+			<span id="source_label">source</span>
+			<span class="label"><a
+					href="https://ko.wikipedia.org/wiki/%EC%9C%84%ED%82%A4%EB%B0%B1%EA%B3%BC:%EB%8C%80%EB%AC%B8">Wikipedia</a></span>
+		</div>
+	</footer>
+</body>
+
+</html>

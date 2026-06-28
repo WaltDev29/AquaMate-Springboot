@@ -88,4 +88,21 @@ public class PageController {
             return "redirect:/login";
         }
     }
+
+    /** 회원정보 수정 페이지 */
+    @GetMapping("/editInfo")
+    public String editInfo(HttpSession session, Model model) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            return "redirect:/login";
+        }
+        Optional<User> userOpt = userService.findById(userId);
+        if (userOpt.isPresent()) {
+            model.addAttribute("user", userOpt.get());
+            return "editInfo";
+        } else {
+            session.invalidate();
+            return "redirect:/login";
+        }
+    }
 }

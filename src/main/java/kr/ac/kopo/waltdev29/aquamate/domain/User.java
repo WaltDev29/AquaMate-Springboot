@@ -43,4 +43,6 @@ public class User {
 
     // 비밀번호 확인용 (DB 저장 불필요, 검증 목적)
     private String pwCheck;
+
+    private java.util.Set<String> bookmarks = new java.util.HashSet<>();
 }

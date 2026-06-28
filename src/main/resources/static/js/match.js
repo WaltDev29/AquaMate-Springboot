@@ -1,39 +1,42 @@
 $(document).ready(function () {
-    // 물고기 데이터 불러오기.
     const params = new URLSearchParams(window.location.search);
 
-    fetch("/api/fish")
-        .then(response => response.json())
-        .then(data => {
-            const fishKeys = Object.keys(data);
-            const currentBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+    Promise.all([
+        fetch("/api/fish").then(response => response.json()),
+        fetch("/api/user/bookmarks").then(response => {
+            if (response.status === 401) return [];
+            return response.json();
+        }).catch(() => [])
+    ])
+    .then(([data, currentBookmarks]) => {
+        const fishKeys = Object.keys(data);
 
-            // DOM 렌더링 최적화: 1회 순회 및 Template Literal 활용, 한 번에 append
-            const htmlString = fishKeys.map(fishKey => {
-                const fish = data[fishKey];
-                const activeClass = currentBookmarks.includes(fishKey) ? "active" : "";
-                return `
-                    <article class="aside_card" data-key="${fishKey}">
-                        <img src="/${fish.img}" alt="${fish.name}">
-                        <div class="aside_describe">
-                            <a href="/fish_info?fish=${fishKey}">
-                                <h4>${fish.name}</h4>
-                            </a>
-                            <p>바다 &nbsp;&nbsp;20~25C</p>
-                        </div>
-                        <div class="star_container">
-                            <button class="starBox ${activeClass}"></button>
-                        </div>
-                    </article>
-                `;
-            }).join('');
-            
-            $("#item_container").append(htmlString);
-        })
-        .catch(error => {
-            console.error("JSON 불러오기 실패 : ", error);
-            alert("물고기 정보를 불러오는 데 실패했습니다.");
-        })
+        // DOM 렌더링 최적화: 1회 순회 및 Template Literal 활용, 한 번에 append
+        const htmlString = fishKeys.map(fishKey => {
+            const fish = data[fishKey];
+            const activeClass = currentBookmarks.includes(fishKey) ? "active" : "";
+            return `
+                <article class="aside_card" data-key="${fishKey}">
+                    <img src="/${fish.img}" alt="${fish.name}">
+                    <div class="aside_describe">
+                        <a href="/fish_info?fish=${fishKey}">
+                            <h4>${fish.name}</h4>
+                        </a>
+                        <p>바다 &nbsp;&nbsp;20~25C</p>
+                    </div>
+                    <div class="star_container">
+                        <button class="starBox ${activeClass}"></button>
+                    </div>
+                </article>
+            `;
+        }).join('');
+        
+        $("#item_container").append(htmlString);
+    })
+    .catch(error => {
+        console.error("JSON 불러오기 실패 : ", error);
+        alert("물고기 정보를 불러오는 데 실패했습니다.");
+    });
 
     // 매치 카드 전환 (jQuery 캐싱 적용)
     $(document).on("click", ".aside_card", function () {
@@ -69,22 +72,29 @@ $(document).ready(function () {
         })
     }
 
-    // 즐겨찾기 버튼 클릭 이벤트 (CSS 클래스 토글 및 localStorage 동기화)
+    // 즐겨찾기 버튼 클릭 이벤트 (API 연동)
     $(document).on("click", ".starBox", function (e) {
         e.stopPropagation();
         e.preventDefault();
-        $(this).toggleClass("active");
 
-        let $article = $(this).closest("article");
+        let $btn = $(this);
+        let $article = $btn.closest("article");
         let fishKey = $article.attr("data-key");
         if (!fishKey) return;
 
-        let bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-        if ($(this).hasClass("active")) {
-            if (!bookmarks.includes(fishKey)) bookmarks.push(fishKey);
-        } else {
-            bookmarks = bookmarks.filter(k => k !== fishKey);
-        }
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+        const isAdd = !$btn.hasClass("active");
+        const method = isAdd ? "POST" : "DELETE";
+
+        fetch(`/api/user/bookmarks/${fishKey}`, { method: method })
+            .then(res => {
+                if (res.status === 401) {
+                    alert("로그인이 필요합니다.");
+                } else if (res.ok) {
+                    $btn.toggleClass("active");
+                } else {
+                    alert("처리 중 오류가 발생했습니다.");
+                }
+            })
+            .catch(err => console.error("Bookmark Error:", err));
     });
-})
+});

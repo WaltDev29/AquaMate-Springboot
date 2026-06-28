@@ -126,4 +126,40 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    // ─────────────────────────────────────────────
+    // 북마크 API
+    // ─────────────────────────────────────────────
+
+    @GetMapping("/api/user/bookmarks")
+    @ResponseBody
+    public ResponseEntity<java.util.Set<String>> getBookmarks(HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+        return ResponseEntity.ok(userService.getBookmarks(userId));
+    }
+
+    @PostMapping("/api/user/bookmarks/{fishKey}")
+    @ResponseBody
+    public ResponseEntity<Void> addBookmark(@PathVariable String fishKey, HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+        boolean success = userService.addBookmark(userId, fishKey);
+        return success ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    }
+
+    @DeleteMapping("/api/user/bookmarks/{fishKey}")
+    @ResponseBody
+    public ResponseEntity<Void> removeBookmark(@PathVariable String fishKey, HttpSession session) {
+        String userId = (String) session.getAttribute("userId");
+        if (userId == null) {
+            return ResponseEntity.status(401).build();
+        }
+        boolean success = userService.removeBookmark(userId, fishKey);
+        return success ? ResponseEntity.ok().build() : ResponseEntity.badRequest().build();
+    }
 }

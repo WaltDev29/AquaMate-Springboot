@@ -49,4 +49,19 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findById(String id) {
         return userRepository.findById(id);
     }
+
+    @Override
+    public boolean addBookmark(String userId, String fishKey) {
+        return userRepository.findById(userId).map(user -> user.getBookmarks().add(fishKey)).orElse(false);
+    }
+
+    @Override
+    public boolean removeBookmark(String userId, String fishKey) {
+        return userRepository.findById(userId).map(user -> user.getBookmarks().remove(fishKey)).orElse(false);
+    }
+
+    @Override
+    public java.util.Set<String> getBookmarks(String userId) {
+        return userRepository.findById(userId).map(User::getBookmarks).orElseGet(java.util.HashSet::new);
+    }
 }

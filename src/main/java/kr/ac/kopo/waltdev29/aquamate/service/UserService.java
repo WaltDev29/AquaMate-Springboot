@@ -16,4 +16,8 @@ public interface UserService {
     boolean login(String id, String pw);
 
     Optional<User> findById(String id);
+
+    boolean addBookmark(String userId, String fishKey);
+    boolean removeBookmark(String userId, String fishKey);
+    java.util.Set<String> getBookmarks(String userId);
 }

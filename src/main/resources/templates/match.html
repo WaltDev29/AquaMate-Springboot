@@ -78,7 +78,7 @@
 							</div>
 							<img src="/images/fish_gold.jpg">
 						</article>
-						<img src="/images/match_heart.png" id="match_heart">
+						<div id="match_heart" style="font-size: 80px; margin: 20px;">💖</div>
 						<article class="match_card" data-changed="false">
 							<div id="art_head">
 								<h3>베타</h3>
@@ -87,23 +87,14 @@
 							<img src="/images/fish_betta.png">
 						</article>
 					</div>
-					<div id="result">궁합이 좋습니다!</div>
+					<button id="btn_check_match">궁합 확인하기</button>
+					<div id="result" style="display: none;"></div>
 				</div>
 				<aside>
 					<div id="search">
 						<div id="grp_search">
 							<input type="text" id="tb_search">
 							<button id="btn_search">Search</button>
-						</div>
-						<div id="grp_sort">
-							<select name="sort" id="select_search">
-								<option value="ocean">바다</option>
-								<option value="water">민물</option>
-								<option value="temp">수온</option>
-								<option value="size">크기</option>
-								<option value="persnal">성격</option>
-							</select>
-							<button id="btn_filter">Filter<img src="/images/filter.png"></button>
 						</div>
 					</div>
 					<div id="item_container"></div>

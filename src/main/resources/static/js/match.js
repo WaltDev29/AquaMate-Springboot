@@ -9,7 +9,13 @@ $(document).ready(function () {
         }).catch(() => [])
     ])
     .then(([data, currentBookmarks]) => {
-        const fishKeys = Object.keys(data);
+        const fishKeys = Object.keys(data).sort((a, b) => {
+            const aBookmarked = currentBookmarks.includes(a);
+            const bBookmarked = currentBookmarks.includes(b);
+            if (aBookmarked && !bBookmarked) return -1;
+            if (!aBookmarked && bBookmarked) return 1;
+            return 0;
+        });
 
         // DOM 렌더링 최적화: 1회 순회 및 Template Literal 활용, 한 번에 append
         const htmlString = fishKeys.map(fishKey => {
@@ -56,6 +62,10 @@ $(document).ready(function () {
             $matchCard1.attr("data-changed", "true");
             $matchCard0.attr("data-changed", "false");
         }
+        
+        // 물고기 변경 시 결과창 숨김 및 하트 초기화
+        $("#result").css("display", "none").text("");
+        $("#match_heart").text("💖");
     });
 
     // 이름 검색 이벤트
@@ -96,5 +106,45 @@ $(document).ready(function () {
                 }
             })
             .catch(err => console.error("Bookmark Error:", err));
+    });
+
+    // 궁합 확인 버튼 로직
+    $("#btn_check_match").click(function() {
+        let $matchCard0 = $(".match_card").eq(0);
+        let $matchCard1 = $(".match_card").eq(1);
+        let fish1 = $matchCard0.find("h3").text();
+        let fish2 = $matchCard1.find("h3").text();
+
+        let $btn = $(this);
+        $btn.prop("disabled", true).text("궁합 분석 중...");
+        $("#result").css("display", "block").html("AI가 열심히 분석하고 있어요... 🐟🔍");
+
+        fetch("/api/chatbot/match", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fish1: fish1, fish2: fish2 })
+        })
+        .then(res => res.json())
+        .then(data => {
+            $btn.prop("disabled", false).text("궁합 확인하기");
+            try {
+                const resultJson = JSON.parse(data.choices[0].message.content);
+                $("#result").html(`궁합: <span style="font-size: 1.3rem;">${resultJson.percentage}%</span><br><br><span style="color: #333; font-weight: normal; font-size: 1rem;">${resultJson.comment}</span>`);
+                
+                let emoji = "💔";
+                if (resultJson.percentage >= 75) emoji = "💖";
+                else if (resultJson.percentage >= 50) emoji = "💛";
+                else if (resultJson.percentage >= 25) emoji = "❤️‍🩹";
+                
+                $("#match_heart").text(emoji);
+            } catch(e) {
+                $("#result").text("결과를 분석하는 중 오류가 발생했습니다.");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            $btn.prop("disabled", false).text("궁합 확인하기");
+            $("#result").text("통신 오류가 발생했습니다.");
+        });
     });
 });

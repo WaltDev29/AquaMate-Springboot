@@ -10,7 +10,13 @@ $(document).ready(function () {
         }).catch(() => [])
     ])
     .then(([data, currentBookmarks]) => {
-        const fishKeys = Object.keys(data);
+        const fishKeys = Object.keys(data).sort((a, b) => {
+            const aBookmarked = currentBookmarks.includes(a);
+            const bBookmarked = currentBookmarks.includes(b);
+            if (aBookmarked && !bBookmarked) return -1;
+            if (!aBookmarked && bBookmarked) return 1;
+            return 0;
+        });
 
         // DOM 렌더링 최적화: 1회 순회 및 Template Literal 활용, 한 번에 append
         const htmlString = fishKeys.map(fishKey => {

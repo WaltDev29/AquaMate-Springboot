@@ -7,49 +7,12 @@ $(document).ready(function () {
 		$("#helpModal").css("display", "none");
 	});
 
-
-
-	// API KEY 입력
-	let apiKey;
-	$("#apiKeySendBtn").click(async function () {
-		const key = $("#apiKeyTb").val().trim();
-		// 입력 안 하면 return
-		if (!key) {
-			toastMsg("API 키를 입력해주세요.");
-			return;
-		}
-		// 유효성 검사
-		try {
-			const response = await fetch("https://api.openai.com/v1/models", {
-				headers: {
-					"Authorization": `Bearer ${key}`,
-					"Content-Type": "application/json"
-				}
-			});
-
-			if (!response.ok) {
-				if (response.status === 401) throw new Error("API 키가 유효하지 않습니다.");
-				else throw new Error(`서버 오류 : ${response.status}`);
-			}
-			apiKey = key;
-			toastMsg("API 키 입력 완료");
-		} catch (err) {
-			alert(err.message);			
-		}
-	});
-
-
-
 	// 사용자 텍스트 박스 제출 이벤트
 	function handleSendInput() {
 		let $helpScreen = $("#helpScreen");
 		if ($helpScreen.children().last().hasClass("userSection")) return;
 		let inputText = $("#helpFooter .tb").val().trim();
 		if (inputText !== "") {
-			if (!apiKey) {
-				toastMsg("API 키를 입력해주세요.");
-				return;
-			}
 			sendMessage(inputText);
 			makeUserSection(inputText);
 		}
@@ -85,15 +48,14 @@ $(document).ready(function () {
 	async function sendMessage(inputText) {
 		// 텍스트 trim
 		inputText = inputText.trim();
-		if (!inputText) return; // 이거 필요 없을 것 같음
+		if (!inputText) return;
 		messages.push({ role: "user", content: inputText });
 		const Maxmessages = 10;
 		const recentMessages = [messages[0], ...messages.slice(-Maxmessages)];
 		try {
-			const response = await fetch("https://api.openai.com/v1/chat/completions", {
+			const response = await fetch("/api/chatbot/ask", {
 				method: "POST",
 				headers: {
-					"Authorization": `Bearer ${apiKey}`,
 					"Content-Type": "application/json"
 				},
 				body: JSON.stringify({
@@ -101,6 +63,9 @@ $(document).ready(function () {
 					messages: recentMessages
 				})
 			});
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
 			const data = await response.json();
 			const botReply = data.choices[0].message.content;
 			makeBotSection(botReply);

@@ -1,7 +1,7 @@
 # 🐟 AquaMate
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/4a86264f-dca8-4abd-92b0-2df33aae3c03" width="500">
+<img width="473" alt="AquaMate 로고" src="https://github.com/user-attachments/assets/b12402a9-bf0e-497e-a413-9c648ac839a6" />
 </p>
 
 

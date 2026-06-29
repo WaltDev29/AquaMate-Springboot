@@ -25,7 +25,7 @@ $(document).ready(function () {
 
 
 	// 메시지 배열 (시스템 프롬프트 포함)
-	let messages = [{
+	const defaultMessages = [{
 		"role": "system", "content":
 			`당신은 물고기 사전, 합사시뮬레이터 웹사이트 'Aqua Mate'의 전용 안내 챗봇입니다.
 		아래의 사항을 반드시 엄격하게 지켜서 응답하세요.
@@ -46,12 +46,25 @@ $(document).ready(function () {
 		`
 	}];
 
+	let messages = JSON.parse(sessionStorage.getItem("chatMessages")) || defaultMessages;
+
+	// 기존 메시지 화면에 렌더링
+	messages.forEach(msg => {
+		if (msg.role === "user") {
+			makeUserSection(msg.content, true); // true 플래그로 입력창 비우기 생략
+		} else if (msg.role === "assistant") {
+			makeBotSection(msg.content);
+		}
+	});
+
 	// 사용자 메시지 전송 메서드
 	async function sendMessage(inputText) {
 		// 텍스트 trim
 		inputText = inputText.trim();
 		if (!inputText) return;
 		messages.push({ role: "user", content: inputText });
+		sessionStorage.setItem("chatMessages", JSON.stringify(messages));
+		
 		const Maxmessages = 10;
 		const recentMessages = [messages[0], ...messages.slice(-Maxmessages)];
 		try {
@@ -72,6 +85,7 @@ $(document).ready(function () {
 			const botReply = data.choices[0].message.content;
 			makeBotSection(botReply);
 			messages.push({ role: "assistant", content: botReply });
+			sessionStorage.setItem("chatMessages", JSON.stringify(messages));
 		} catch (err) {
 			console.error(err);
 			makeBotSection("오류 발생 : " + err.message);

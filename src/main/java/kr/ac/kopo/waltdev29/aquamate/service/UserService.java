@@ -9,8 +9,8 @@ import java.util.Optional;
  */
 public interface UserService {
 
-    /** 회원가입: 중복 아이디 검사 후 저장. 중복 시 false 반환 */
-    boolean signUp(User user);
+    /** 회원가입: 중복 검사 후 저장. 결과 상태를 문자열로 반환 (SUCCESS, DUPLICATE_ID, DUPLICATE_EMAIL, DUPLICATE_PHONE) */
+    String signUp(User user);
 
     /** 로그인: 아이디/비밀번호 일치 여부 확인 */
     boolean login(String id, String pw);

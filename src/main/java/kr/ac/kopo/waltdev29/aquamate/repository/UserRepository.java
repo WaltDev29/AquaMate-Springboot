@@ -18,4 +18,10 @@ public interface UserRepository {
 
     /** 아이디 중복 여부 확인 */
     boolean existsById(String id);
+
+    /** 이메일 중복 여부 확인 */
+    boolean existsByEmail(String email);
+
+    /** 전화번호 중복 여부 확인 */
+    boolean existsByPhoneNum(String phoneNum);
 }

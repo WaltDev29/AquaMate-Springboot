@@ -34,4 +34,14 @@ public class UserRepositoryImpl implements UserRepository {
     public boolean existsById(String id) {
         return userStore.containsKey(id);
     }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return userStore.values().stream().anyMatch(user -> user.getEmail().equals(email));
+    }
+
+    @Override
+    public boolean existsByPhoneNum(String phoneNum) {
+        return userStore.values().stream().anyMatch(user -> user.getPhoneNum().equals(phoneNum));
+    }
 }

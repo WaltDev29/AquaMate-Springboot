@@ -51,12 +51,32 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             log.warn("[UserController] 회원가입 유효성 검사 실패: {}", bindingResult.getAllErrors());
             model.addAttribute("errors", bindingResult.getAllErrors());
+            
+            // 문제 있는 필드만 지우기
+            for (org.springframework.validation.FieldError error : bindingResult.getFieldErrors()) {
+                String field = error.getField();
+                if ("id".equals(field)) user.setId("");
+                else if ("pw".equals(field)) user.setPw("");
+                else if ("pwCheck".equals(field)) user.setPwCheck("");
+                else if ("name".equals(field)) user.setName("");
+                else if ("email".equals(field)) user.setEmail("");
+                else if ("phoneNum".equals(field)) user.setPhoneNum("");
+            }
             return "signUp"; // 다시 폼으로
         }
 
-        boolean success = userService.signUp(user);
-        if (!success) {
+        String result = userService.signUp(user);
+        if ("DUPLICATE_ID".equals(result)) {
+            user.setId(""); // 문제있는 필드 지우기
             model.addAttribute("errorMsg", "이미 사용 중인 아이디입니다.");
+            return "signUp";
+        } else if ("DUPLICATE_EMAIL".equals(result)) {
+            user.setEmail(""); // 문제있는 필드 지우기
+            model.addAttribute("errorMsg", "이미 등록된 이메일입니다.");
+            return "signUp";
+        } else if ("DUPLICATE_PHONE".equals(result)) {
+            user.setPhoneNum(""); // 문제있는 필드 지우기
+            model.addAttribute("errorMsg", "이미 등록된 전화번호입니다.");
             return "signUp";
         }
 

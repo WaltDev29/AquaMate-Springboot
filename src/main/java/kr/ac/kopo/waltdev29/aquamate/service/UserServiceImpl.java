@@ -21,17 +21,25 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 회원가입 처리.
-     * @return 중복 아이디 없이 정상 저장 시 true, 중복 시 false
+     * @return 중복 여부에 따라 상태 문자열 반환
      */
     @Override
-    public boolean signUp(User user) {
+    public String signUp(User user) {
         if (userRepository.existsById(user.getId())) {
             log.warn("[UserService] 중복 아이디 가입 시도: {}", user.getId());
-            return false;
+            return "DUPLICATE_ID";
+        }
+        if (userRepository.existsByEmail(user.getEmail())) {
+            log.warn("[UserService] 중복 이메일 가입 시도: {}", user.getEmail());
+            return "DUPLICATE_EMAIL";
+        }
+        if (userRepository.existsByPhoneNum(user.getPhoneNum())) {
+            log.warn("[UserService] 중복 전화번호 가입 시도: {}", user.getPhoneNum());
+            return "DUPLICATE_PHONE";
         }
         userRepository.save(user);
         log.info("[UserService] 신규 회원 가입 완료: {}", user.getId());
-        return true;
+        return "SUCCESS";
     }
 
     /**

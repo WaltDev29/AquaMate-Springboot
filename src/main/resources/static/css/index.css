@@ -2,11 +2,6 @@
 			box-sizing: border-box;
 		}
 
-		html {
-			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
-			background-repeat: no-repeat;
-		}
-
 		html,
 		body {
 			height: 100%;
@@ -16,7 +11,7 @@
 		body {
 			display: flex;
 			flex-direction: column;
-			background-color: rgba(0, 0, 0, 0.3);
+			background: linear-gradient(135deg, rgb(6, 255, 197) 0%, rgb(0, 170, 255) 48%, rgb(0, 72, 255) 100%);
 			background-repeat: no-repeat;
 		}
 

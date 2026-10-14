@@ -1,8 +1,8 @@
 $(document).ready(function () {
     // 물고기 데이터와 북마크 데이터를 불러오기
     Promise.all([
-        fetch("/api/fish").then(res => res.json()),
-        fetch("/api/user/bookmarks").then(res => {
+        fetch("/aquamate/api/fish").then(res => res.json()),
+        fetch("/aquamate/api/user/bookmarks").then(res => {
             if (res.status === 401) return null;
             return res.json();
         }).catch(() => null)
@@ -24,13 +24,13 @@ $(document).ready(function () {
 
             const fontSize = fish.name.length >= 5 ? 'style="font-size: 16px;"' : '';
             return `
-                <a href="/fish_info?fish=${fishKey}">
+                <a href="/aquamate/fish_info?fish=${fishKey}">
                     <article data-key="${fishKey}">
                         <div id="art_head">
                             <h3 ${fontSize}>${fish.name}</h3>
                             <div class="starBox active"></div>
                         </div>
-                        <img src="/${fish.img}" alt="${fish.name}">
+                        <img src="/aquamate/${fish.img}" alt="${fish.name}">
                     </article>
                 </a>
             `;
@@ -52,7 +52,7 @@ $(document).ready(function () {
         let $article = $btn.closest("article");
         let fishKey = $article.attr("data-key");
 
-        fetch(`/api/user/bookmarks/${fishKey}`, { method: 'DELETE' })
+        fetch(`/aquamate/api/user/bookmarks/${fishKey}`, { method: 'DELETE' })
             .then(res => {
                 if (res.ok) {
                     // 화면에서 제거

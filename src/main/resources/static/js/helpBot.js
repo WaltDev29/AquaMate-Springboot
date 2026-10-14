@@ -68,7 +68,7 @@ $(document).ready(function () {
 		const Maxmessages = 10;
 		const recentMessages = [messages[0], ...messages.slice(-Maxmessages)];
 		try {
-			const response = await fetch("/api/chatbot/ask", {
+			const response = await fetch("/aquamate/api/chatbot/ask", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"

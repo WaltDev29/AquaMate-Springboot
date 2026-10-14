@@ -5,29 +5,29 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Aqua Mate : Sign Up</title>
-	<link rel="stylesheet" href="/css/signUp.css">
+	<link rel="stylesheet" href="/aquamate/css/signUp.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="/js/signUp.js"></script>
+	<script src="/aquamate/js/signUp.js"></script>
 </head>
 
 <body>
 	<div style="display: flex; justify-content: flex-end; padding: 20px 40px 0 0; gap: 15px; width: 100%;">
 		<th:block th:if="${session.userId == null}">
-			<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
-			<a href="/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
+			<a href="/aquamate/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
+			<a href="/aquamate/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
 		</th:block>
 		<th:block th:if="${session.userId != null}">
-			<a href="/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
+			<a href="/aquamate/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
 		</th:block>
 	</div>
 	<header style="text-align: center; padding-top: 0px;">
-		<a href="/">
-			<img src="/images/logo.png" width="500px">
+		<a href="/aquamate/">
+			<img src="/aquamate/images/logo.png" width="500px">
 		</a>
 	</header>
 	<main>
 		<!-- 회원가입 폼: POST /signUp 으로 제출 -->
-		<form action="/signUp" method="post" id="div_signUp">
+		<form action="/aquamate/signUp" method="post" id="div_signUp">
 			<h2>Sign Up</h2>
 			<div id="div_id" class="tb">
 				<label for="tb_id" class="label">ID</label>
@@ -61,9 +61,9 @@
 	<footer>
 		<div id="contact">
 			<span id="contact_label">Contact</span>
-			<span class="label"><img src="/images/github.png" id="img_github"><a
+			<span class="label"><img src="/aquamate/images/github.png" id="img_github"><a
 					href="https://github.com/WaltDev29">WaltDev29</a></span>
-			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+			<span class="label"><img src="/aquamate/images/email.png" id="img_email">waltdev29@gmail.com</span>
 		</div>
 		<div id="source">
 			<span id="source_label">source</span>

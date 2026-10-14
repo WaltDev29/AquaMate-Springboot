@@ -5,46 +5,46 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Aqua Mate</title>
-	<link rel="stylesheet" href="/css/index.css">
-	<link rel="stylesheet" href="/css/helpBot.css">
+	<link rel="stylesheet" href="/aquamate/css/index.css?v=2">
+	<link rel="stylesheet" href="/aquamate/css/helpBot.css?v=2">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="/js/helpBot.js"></script>
+	<script src="/aquamate/js/helpBot.js?v=2"></script>
 </head>
 
 <body>
 	<header style="display: flex; justify-content: flex-end; padding: 20px 40px; gap: 15px;">
 		<th:block th:if="${session.userId == null}">
-			<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
-			<a href="/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
+			<a href="/aquamate/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
+			<a href="/aquamate/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
 		</th:block>
 		<th:block th:if="${session.userId != null}">
-			<a href="/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
+			<a href="/aquamate/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
 		</th:block>
 	</header>
 	<main>
-		<img src="/images/logo.png" width="500px">
+		<img src="/aquamate/images/logo.png" width="500px">
 		<nav>
 			<div id="dic">
-				<a href="/dictionary">
-					<button id="btn_dic"><img src="/images/book.png"></button>
+				<a href="/aquamate/dictionary">
+					<button id="btn_dic"><img src="/aquamate/images/book.png"></button>
 					<h3>Dictionary</h3>
 				</a>
 			</div>
 			<div id="match">
-				<a href="/match">
-					<button id="btn_match"><img src="/images/heart.png"></button>
+				<a href="/aquamate/match">
+					<button id="btn_match"><img src="/aquamate/images/heart.png"></button>
 					<h3>Match</h3>
 				</a>
 			</div>
 			<div id="about">
-				<a href="/about">
-					<button id="btn_about"><img src="/images/bookmark.png"></button>
+				<a href="/aquamate/about">
+					<button id="btn_about"><img src="/aquamate/images/bookmark.png"></button>
 					<h3>About</h3>
 				</a>
 			</div>
 			<div id="mypage_nav">
-				<a href="/myPage">
-					<button id="btn_mypage_nav"><img src="/images/user.png"></button>
+				<a href="/aquamate/myPage">
+					<button id="btn_mypage_nav"><img src="/aquamate/images/user.png"></button>
 					<h3>My Page</h3>
 				</a>
 			</div>
@@ -66,9 +66,9 @@
 	<footer>
 		<div id="contact">
 			<span id="contact_label">Contact</span>
-			<span class="label"><img src="/images/github.png" id="img_github"><a
+			<span class="label"><img src="/aquamate/images/github.png" id="img_github"><a
 					href="https://github.com/WaltDev29">WaltDev29</a></span>
-			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+			<span class="label"><img src="/aquamate/images/email.png" id="img_email">waltdev29@gmail.com</span>
 		</div>
 		<div id="source">
 			<span id="source_label">source</span>

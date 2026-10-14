@@ -5,28 +5,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Aqua Mate : Log In</title>
-	<link rel="stylesheet" href="/css/login.css">
-	<link rel="stylesheet" href="/css/helpBot.css">
+	<link rel="stylesheet" href="/aquamate/css/login.css">
+	<link rel="stylesheet" href="/aquamate/css/helpBot.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="/js/helpBot.js"></script>
+	<script src="/aquamate/js/helpBot.js"></script>
 </head>
 
 <body>
 	<header style="display: flex; justify-content: flex-end; padding: 20px 40px; gap: 15px;">
 		<th:block th:if="${session.userId == null}">
-			<a href="/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
-			<a href="/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
+			<a href="/aquamate/login" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그인</a>
+			<a href="/aquamate/signUp" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">회원가입</a>
 		</th:block>
 		<th:block th:if="${session.userId != null}">
-			<a href="/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
+			<a href="/aquamate/logout" style="color: white; text-decoration: none; font-weight: bold; cursor: pointer;">로그아웃</a>
 		</th:block>
 	</header>
 	<main>
-		<a href="/">
-			<img src="/images/logo.png" width="500px">
+		<a href="/aquamate/">
+			<img src="/aquamate/images/logo.png" width="500px">
 		</a>
 		<!-- 로그인 폼: POST /login 로 제출 -->
-		<form action="/login" method="post" id="div_sign">
+		<form action="/aquamate/login" method="post" id="div_sign">
 			<div id="div_id" class="tb">
 				<label for="tb_id" class="label">ID</label>
 				<input type="text" id="tb_id" name="id">
@@ -40,7 +40,7 @@
 			</div>
 			<div id="div_btn">
 				<input type="submit" id="btn_signIn" value="Sign In">
-				<a href="/signUp">
+				<a href="/aquamate/signUp">
 					<input type="button" id="btn_signUp" value="Sign Up">
 				</a>
 			</div>
@@ -49,9 +49,9 @@
 	<footer>
 		<div id="contact">
 			<span id="contact_label">Contact</span>
-			<span class="label"><img src="/images/github.png" id="img_github"><a
+			<span class="label"><img src="/aquamate/images/github.png" id="img_github"><a
 					href="https://github.com/WaltDev29">WaltDev29</a></span>
-			<span class="label"><img src="/images/email.png" id="img_email">waltdev29@gmail.com</span>
+			<span class="label"><img src="/aquamate/images/email.png" id="img_email">waltdev29@gmail.com</span>
 		</div>
 		<div id="source">
 			<span id="source_label">source</span>

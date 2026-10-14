@@ -2,8 +2,8 @@ $(document).ready(function () {
     const params = new URLSearchParams(window.location.search);
 
     Promise.all([
-        fetch("/api/fish").then(response => response.json()),
-        fetch("/api/user/bookmarks").then(response => {
+        fetch("/aquamate/api/fish").then(response => response.json()),
+        fetch("/aquamate/api/user/bookmarks").then(response => {
             if (response.status === 401) return [];
             return response.json();
         }).catch(() => [])
@@ -23,9 +23,9 @@ $(document).ready(function () {
             const activeClass = currentBookmarks.includes(fishKey) ? "active" : "";
             return `
                 <article class="aside_card" data-key="${fishKey}">
-                    <img src="/${fish.img}" alt="${fish.name}">
+                    <img src="/aquamate/${fish.img}" alt="${fish.name}">
                     <div class="aside_describe">
-                        <a href="/fish_info?fish=${fishKey}">
+                        <a href="/aquamate/fish_info?fish=${fishKey}">
                             <h4>${fish.name}</h4>
                         </a>
                         <p>바다 &nbsp;&nbsp;20~25C</p>
@@ -95,7 +95,7 @@ $(document).ready(function () {
         const isAdd = !$btn.hasClass("active");
         const method = isAdd ? "POST" : "DELETE";
 
-        fetch(`/api/user/bookmarks/${fishKey}`, { method: method })
+        fetch(`/aquamate/api/user/bookmarks/${fishKey}`, { method: method })
             .then(res => {
                 if (res.status === 401) {
                     alert("로그인이 필요합니다.");
@@ -119,7 +119,7 @@ $(document).ready(function () {
         $btn.prop("disabled", true).text("궁합 분석 중...");
         $("#result").css("display", "block").html("AI가 열심히 분석하고 있어요... 🐟🔍");
 
-        fetch("/api/chatbot/match", {
+        fetch("/aquamate/api/chatbot/match", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ fish1: fish1, fish2: fish2 })

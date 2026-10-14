@@ -3,8 +3,8 @@ $(document).ready(function () {
 
     // 물고기 데이터와 즐겨찾기 데이터를 동시에 불러옴
     Promise.all([
-        fetch("/api/fish").then(response => response.json()),
-        fetch("/api/user/bookmarks").then(response => {
+        fetch("/aquamate/api/fish").then(response => response.json()),
+        fetch("/aquamate/api/user/bookmarks").then(response => {
             if (response.status === 401) return [];
             return response.json();
         }).catch(() => [])
@@ -24,13 +24,13 @@ $(document).ready(function () {
             const fontSize = fish.name.length >= 5 ? 'style="font-size: 16px;"' : '';
             const activeClass = currentBookmarks.includes(fishKey) ? "active" : "";
             return `
-                <a href="/fish_info?fish=${fishKey}">
+                <a href="/aquamate/fish_info?fish=${fishKey}">
                     <article data-key="${fishKey}">
                         <div id="art_head">
                             <h3 ${fontSize}>${fish.name}</h3>
                             <div class="starBox ${activeClass}"></div>
                         </div>
-                        <img src="/${fish.img}" alt="${fish.name}">
+                        <img src="/aquamate/${fish.img}" alt="${fish.name}">
                     </article>
                 </a>
             `;
@@ -56,7 +56,7 @@ $(document).ready(function () {
         const isAdd = !$btn.hasClass("active");
         const method = isAdd ? "POST" : "DELETE";
 
-        fetch(`/api/user/bookmarks/${fishKey}`, { method: method })
+        fetch(`/aquamate/api/user/bookmarks/${fishKey}`, { method: method })
             .then(res => {
                 if (res.status === 401) {
                     alert("로그인이 필요합니다.");

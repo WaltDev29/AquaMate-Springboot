@@ -11,7 +11,7 @@
 AquaMate는 물고기 사전과 두 물고기 간의 합사 궁합을 분석해주는 기능을 제공하는 웹 어플리케이션입니다. 
 
 ## 🔍 사이트 접속
-👉 [**Click Here!**](https://nextwave.aikopo.net/aquamate/)
+👉 [**Click Here!**](https://waltdev29.aikopo.net/aquamate/)
 
 
 ## 🛠️ Tech Stack
